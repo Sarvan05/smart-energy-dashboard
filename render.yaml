@@ -17,12 +17,12 @@ services:
       - JWT_SECRET
 
   # Frontend Static Site
-  - type: static
+  - type: web
     name: smart-energy-frontend
     env: static
     root: frontend
     buildCommand: npm install && npm run build
-    publish: dist
+    staticPublishPath: dist
     routes:
       - type: rewrite
         source: /*
