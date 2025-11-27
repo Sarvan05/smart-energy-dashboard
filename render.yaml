@@ -3,7 +3,7 @@ services:
   - type: web
     name: smart-energy-backend
     env: node
-    root: backend
+    rootDir: backend
     buildCommand: npm install
     startCommand: node server.js
     plan: free
@@ -12,15 +12,16 @@ services:
         value: 18.17.0
       - key: PORT
         value: 10000
-    fromEnv:
-      - MONGO_URI
-      - JWT_SECRET
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
 
   # Frontend Static Site
   - type: web
     name: smart-energy-frontend
     env: static
-    root: frontend
+    rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
     routes:
